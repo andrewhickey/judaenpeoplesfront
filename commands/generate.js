@@ -52,13 +52,17 @@ var posTokens = {
   'RBR':{},'RBS':{},'RP':{},'SYM':{},
   'TO':{},'UH':{},'VB':{},'VBD':{},
   'VBG':{
-    minLength: 4
+    minLength: 4,
+    minCount: 5
   },'VBN':{
-    minLength: 4
+    minLength: 4,
+    minCount: 5
   },'VBP':{
-    minLength: 4
+    minLength: 4,
+    minCount: 5
   },'VBZ':{
-    minLength: 4
+    minLength: 4,
+    minCount: 5
   },
   'WDT':{},'WP':{},'WP$':{},'WRB':{},
   ':{},':{},'.':{},':':{},'$':{},
