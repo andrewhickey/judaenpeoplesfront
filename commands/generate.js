@@ -9,6 +9,9 @@ var defaultTemplates = [
   "JJ NNP VBZ JJ NN"
 ];
 
+var punctuationRegex = "[.,\\\?!:;<>\\\[\\\]{}\"'\\\\\\/£\\\$%\\\^\\\&\\\*\\\(\\\)@#=\\\+\\\-\\\_`]";
+
+
 var posTokens = {
   'CC':{},'CD':{},'DT':{},'EX':{},
   'FW':{},'IN':{},'JJ':{},'JJR':{},
@@ -30,6 +33,9 @@ var posTokens = {
   ':{},':{},'.':{},':':{},'$':{},
   '#':{},'"':{},'(':{},')':{}
 }
+
+const punctuation = ['.,?!:;<>[]{}"\'\\/£$%^&\*\(\)']
+
 
 
 
@@ -69,13 +75,21 @@ module.exports = function ( template, cb ) {
   if( !_.isString(template) || template === "" )
     template = defaultTemplates[Math.floor(Math.random() * defaultTemplates.length)]
 
+  template = template.replace( new RegExp(punctuationRegex, 'g'), ' $&' );
+
+  console.log(template);
   var tokens = template.split(' ');
+
 
   async.map(tokens, parseToken, 
     (err, res) => {      
       res[0] = res[0].charAt(0).toUpperCase() + res[0].slice(1);
       var sentence = _.reduce(res, (sentence, word) => sentence + word + " ", "");
-      sentence = sentence.trim()+".";
+      sentence = sentence.trim();
+
+      sentence = sentence.replace( new RegExp("(\\\s)("+punctuationRegex+")", 'g'), '$2' );
+
+
       console.log(sentence);
       if(_.isFunction(cb)) cb(sentence, template)
       else process.exit();
