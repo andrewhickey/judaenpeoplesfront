@@ -37,7 +37,15 @@ var posTokens = {
   'CC':{},'CD':{},'DT':{},'EX':{},
   'FW':{},'IN':{},'JJ':{},'JJR':{},
   'JJS':{},'LS':{},'MD':{},'NN':{},
-  'NNP':{},'NNPS':{},'NNS':{},'POS':{},
+  'NNP':{
+    minLength: 5
+  },'NNPS':{
+    minLength: 5
+  },'NNS':{
+    minLength: 5
+  },'POS':{
+    minLength: 5
+  },
   'PDT':{},'PP$':{},'PRP':{},'RB':{},
   'RBR':{},'RBS':{},'RP':{},'SYM':{},
   'TO':{},'UH':{},'VB':{},'VBD':{},
