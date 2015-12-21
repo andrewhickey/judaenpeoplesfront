@@ -78,7 +78,6 @@ module.exports = function ( template, cb ) {
 
   template = template.replace( new RegExp(punctuationRegex, 'g'), ' $&' );
 
-  console.log(template);
   var tokens = template.split(' ');
 
 
