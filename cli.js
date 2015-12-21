@@ -8,25 +8,25 @@ var _                       = require('lodash');
 var program                 = require('commander');
 var request                 = require('request');
 var assert                  = require('assert');
+var pos                     = require('pos');
+var async                   = require('async');
+var mongoose_connection     = rootRequire('connections/mongoose');
 var data_v1                 = rootRequire('models/data_v1');
 var POS                     = rootRequire('models/pos');
 var getLoadingMessage       = rootRequire('helpers/getLoadingMessage');
 
-var pos                     = require('pos');
-var async                   = require('async');
 
 var lexer = new pos.Lexer()
 var tagger = new pos.Tagger()
-var results = {};
 
-function workWithComment(item) {
+function workWithComment(results, item) {
   var words = lexer.lex(item.text);
   var taggedWords = tagger.tag(words);
-  _.each(taggedWords, addTagToResults)
-  
+  _.each(taggedWords, addTagToResults.bind(null, results))
+  return results;
 }
 
-function addTagToResults(taggedWord) {
+function addTagToResults(results, taggedWord) {
   var word = taggedWord[0].toLowerCase();
   var pos = taggedWord[1];
 
@@ -44,21 +44,31 @@ program
   .command('enhance')
   .action(function () {    
     console.log(getLoadingMessage());
-    
 
     data_v1.find({}, function(err, docs){  
-      _.each(docs, workWithComment)
-      results = _.each(results, function(bucket, key){
-        new POS({
+      
+      var results = _.reduce(docs, workWithComment, {});
+
+      async.forEachOf(results, (item, key, cb) => {        
+        
+        // save the POS collection
+        var newPos = new POS({
           tag: key, 
-          words: _.values(bucket)
-        }).save();
+          words: _.values(item)
+        })
+        
+        newPos.save(function(err) {
+          assert.ifError(err);
+          cb();
+        });
+
+      }, err => {
+        // all new POS saved
+        assert.ifError(err);
+        process.exit();
       })
 
-      process.exit();
     })
-
-    
 
   });
 

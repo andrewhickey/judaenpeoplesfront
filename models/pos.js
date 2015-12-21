@@ -7,6 +7,6 @@ var schema = new mongoose.Schema({
     word: { type: String },
     count: { type: Number },
   }]
-}, { strict: false });
+});
 
 module.exports = mongoose_connection.getConnection().model( 'POS', schema, 'pos'); 
