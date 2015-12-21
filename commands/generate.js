@@ -11,7 +11,9 @@ var defaultTemplates = [
   "DOG is coming for the XMAS",
   "JJ NN, JJPLUS NN!",
   "DOG VBZ the XMAS",
-  "HT2 says 'VBP JJR XMAS'"
+  "The XMAS VBP RB than a NNP in NNP",
+  "HT2 says 'VBP JJR XMAS'",
+  "The XMAS were VBN RBR than HT2 MD VBP"
 ];
 
 
