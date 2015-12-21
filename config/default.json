@@ -19,7 +19,7 @@
   },
 
   "mongodb": {
-    "uri": "mongodb://localhost:27017/ll",
+    "uri": "mongodb://localhost:27017/jpf_v1",
     "opts": {
       "user": "",
       "pass": "",
