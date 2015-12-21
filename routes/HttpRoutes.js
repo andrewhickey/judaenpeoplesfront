@@ -16,11 +16,11 @@ router.get('/wisdom', function (req, res) {
     res.send({
       "response_type": "in_channel",
       "text": wisdom,
-      "attachments": [
+      /*"attachments": [
           {
             "text": template
           }
-      ]
+      ]*/
     });
   })
 })
