@@ -36,7 +36,9 @@ var customTokens = {
 var posTokens = {
   'CC':{},'CD':{},'DT':{},'EX':{},
   'FW':{},'IN':{},'JJ':{},'JJR':{},
-  'JJS':{},'LS':{},'MD':{},'NN':{},
+  'JJS':{},'LS':{},'MD':{},'NN':{
+    minLength: 5
+  },
   'NNP':{
     minLength: 5
   },'NNPS':{
