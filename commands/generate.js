@@ -7,10 +7,11 @@ var getLoadingMessage       = rootRequire('helpers/getLoadingMessage');
 var defaultTemplates = [
   "JJ NNS VBP JJ NN",
   "JJ NNP VBZ JJ NN",
-  "Jasper VBZ the sausage",
-  "Jasper is coming for the XMAS",
+  "DOG VBZ the sausage",
+  "DOG is coming for the XMAS",
   "JJ NN, JJ NN!",
-  "Manny VBZ the XMAS"
+  "DOG VBZ the XMAS",
+  "HT2 says 'VBP JJR XMAS'"
 ];
 
 
@@ -23,6 +24,12 @@ var customTokens = {
     'pancetta','spam','chorizo','salami','eggnog',
     'elves','reindeer','gingerbread houses','plum puddings',
     'frankincense','mistletoe','yule log','stuffing','turkeys'
+  ],
+  'DOG' : [
+    'Manny', 'Jasper', 'Daisy', 'Lulu'
+  ],
+  'HT2': [ 
+    'James', 'Andrew', 'Janet', 'Alan', 'Pete', 'Ryan', 'Steven', 'Ben', 'Andie', 'Katharina', 'Craig', 'Dave'
   ]
 }
 
@@ -91,7 +98,7 @@ module.exports = function ( template, cb ) {
   if( !_.isString(template) || template === "" )
     template = defaultTemplates[Math.floor(Math.random() * defaultTemplates.length)]
 
-  template = template.replace( new RegExp(punctuationRegex, 'g'), ' $&' );
+  template = template.replace( new RegExp(punctuationRegex, 'g'), ' $& ' );
 
   var tokens = template.split(' ');
 
@@ -100,9 +107,9 @@ module.exports = function ( template, cb ) {
     (err, res) => {      
       res[0] = res[0].charAt(0).toUpperCase() + res[0].slice(1);
       var sentence = _.reduce(res, (sentence, word) => sentence + word + " ", "");
-      sentence = sentence.trim();
 
-      sentence = sentence.replace( new RegExp("(\\\s)("+punctuationRegex+")", 'g'), '$2' );
+      sentence = sentence.replace( new RegExp("(\\\s)("+punctuationRegex+")(\\\s)", 'g'), '$2' );
+      sentence = sentence.trim();
 
 
       console.log(sentence);
