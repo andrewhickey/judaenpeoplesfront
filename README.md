@@ -1,6 +1,1 @@
-# learninglocker_node
-NodeJS server component for learninglocker_cloud
-
-Requires iojs ^2.3
-
-iojs server --NODE_ENV=default
+'Judean People's Front'. We're the People's Front of Judea! 'Judean People's Front'.

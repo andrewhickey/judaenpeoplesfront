@@ -1,0 +1,14 @@
+{
+
+  "mongodb": {
+    "uri": "mongodb://localhost:27017/ll_staging",
+    "opts": {
+      "user": "",
+      "pass": "",
+      "auth" : {
+        "authdb" : ""
+      }
+    }
+  }
+  
+}
