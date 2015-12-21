@@ -5,11 +5,11 @@ var POS                     = rootRequire('models/pos');
 var getLoadingMessage       = rootRequire('helpers/getLoadingMessage');
 
 var defaultTemplates = [
-  "JJ NNS VBP JJ NN",
-  "JJ NNP VBZ JJ NN",
+  "JJPLUS NNS VBP JJ NN",
+  "JJ NNP VBZ JJPLUS NN",
   "DOG VBZ the sausage",
   "DOG is coming for the XMAS",
-  "JJ NN, JJ NN!",
+  "JJ NN, JJPLUS NN!",
   "DOG VBZ the XMAS",
   "HT2 says 'VBP JJR XMAS'"
 ];
@@ -30,6 +30,12 @@ var customTokens = {
   ],
   'HT2': [ 
     'James', 'Andrew', 'Janet', 'Alan', 'Pete', 'Ryan', 'Steven', 'Ben', 'Andie', 'Katharina', 'Craig', 'Dave'
+  ],
+  'JJPLUS': [
+    'diabolical', 'scrappy', 'degrading', 'diseased', 'clunky ', 
+    'incestuous', 'virtuous', 'mystic', 'radical', 'illuminating', 
+    'herculean', 'inconceivable', 'audacious', 'liveried', 'off-putting', 
+    'golden', 'primal', 'jaded', 'woeful', 'bearable', 'laudable'
   ]
 }
 
