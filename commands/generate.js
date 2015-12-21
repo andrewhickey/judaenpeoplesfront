@@ -6,7 +6,8 @@ var getLoadingMessage       = rootRequire('helpers/getLoadingMessage');
 
 var defaultTemplates = [
   "JJ NNS VBP JJ NN",
-  "JJ NNP VBZ JJ NN"
+  "JJ NNP VBZ JJ NN",
+  "Jasper VBZ the sausage"
 ];
 
 var posTokens = {
