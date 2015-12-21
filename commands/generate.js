@@ -36,21 +36,35 @@ var customTokens = {
 var posTokens = {
   'CC':{},'CD':{},'DT':{},'EX':{},
   'FW':{},'IN':{},'JJ':{},'JJR':{},
-  'JJS':{},'LS':{},'MD':{},'NN':{
-    minLength: 5
+  'JJS':{},'LS':{},'MD':{},
+  'NN':{
+    minLength: 4,
+    minCount: 5
   },
   'NNP':{
-    minLength: 5
-  },'NNPS':{
-    minLength: 5
-  },'NNS':{
-    minLength: 5
-  },'POS':{
-    minLength: 5
+    minLength: 4,
+    minCount: 5
   },
+  'NNPS':{
+    minLength: 4,
+    minCount: 5
+  },
+  'NNS':{
+    minLength: 4,
+    minCount: 5
+  },
+  'POS':{},
   'PDT':{},'PP$':{},'PRP':{},'RB':{},
   'RBR':{},'RBS':{},'RP':{},'SYM':{},
-  'TO':{},'UH':{},'VB':{},'VBD':{},
+  'TO':{},'UH':{},
+  'VB':{
+    minLength: 4,
+    minCount: 5
+  },
+  'VBD':{
+    minLength: 4,
+    minCount: 5
+  },
   'VBG':{
     minLength: 4,
     minCount: 5
