@@ -10,6 +10,18 @@ var defaultTemplates = [
   "Jasper VBZ the sausage"
 ];
 
+
+
+var customTokens = {
+  'XMAS' : [
+    'ham','bacon','pastrami','spare ribs','hot dogs',
+    'frankfurters','rohwurst','sausages','kochwurst',
+    'pancetta','spam','chorizo','salami','eggnog',
+    'elves','reindeer','gingerbread houses','plum puddings',
+    'frankincense','mistletoe','yule log','stuffing','turkeys'
+  ]
+}
+
 var posTokens = {
   'CC':{},'CD':{},'DT':{},'EX':{},
   'FW':{},'IN':{},'JJ':{},'JJR':{},
@@ -35,7 +47,9 @@ var posTokens = {
 
 
 function parseToken (token, cb) {
-  if(_.contains(_.keys(posTokens), token)) {
+  if(_.contains(_.keys(customTokens), token)) {
+    cb(null, customTokens[token][Math.floor(Math.random() * customTokens[token].length)]); 
+  } else if (_.contains(_.keys(posTokens), token)) {
     POS.findOne({
       'tag': token
     }, {
